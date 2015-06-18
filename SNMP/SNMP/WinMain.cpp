@@ -75,9 +75,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR CmdLine, i
 	ShowWindow(hwnd, iCmdShow);													//显示窗口
 	UpdateWindow(hwnd);															//更新窗口……显示完之后就要更新…………
 
-	while (GetMessage(&msg, NULL, 0, 0)){											//消息循环…………
+	while (GetMessage(&msg, NULL, 0, 0)){										//消息循环…………
 		TranslateMessage(&msg);													//翻译
-		DispatchMessage(&msg);													//分发
+		DispatchMessage(&msg);													//分发-------这货会调用回调函数
 	}
 
 	return msg.wParam;
@@ -104,5 +104,5 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)	
 		return 0;
 	}
 
-	return DefWindowProc(hwnd, message, wParam, lParam);
+	return DefWindowProc(hwnd, message, wParam, lParam);								//调用默认消息处理函数
 }
